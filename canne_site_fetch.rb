@@ -8,6 +8,9 @@ require 'logger'
 require 'mechanize'
 log = Logger.new("new_log.txt")
 
+# require 'bundler'
+# Bundler.require
+
 #リストを作って、URLを取り出す。
 def download_media(html, info, log)
   html.css("video > source, audio").each do |sourcetag|
@@ -79,7 +82,6 @@ def download_image(html, info, log,agent)
 
   # end
 end
-
 
 def download_image_list(img_list, info, log)
   Parallel.map(img_list, :in_threads => 10) { |uri|
